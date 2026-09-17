@@ -12,7 +12,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        
+
         $categorias= Categoria::all();
         return response()->json($categorias);
 
@@ -26,15 +26,23 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
-        
+        $categoria = Categoria::create([
+            'nombre' => $request->nombre
+        ]);
+
+        return response()->json($categoria, 201);
     }
 
     /**
-     * Display the specified resource.
+    * Muestra el recurso especificado
      */
     public function show(string $id)
     {
-        //
+         // Busca la categoría por su ID
+        $categoria = Categoria::find($id);
+
+         // Devuelve la categoría en formato JSON
+        return response()->json($categoria);
     }
 
     /**
@@ -42,7 +50,12 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         // Busca la categoría por su ID
+        $categoria = Categoria::find($id);
+
+         // Devuelve la categoría en formato JSON
+        return response()->json($categoria);
+
     }
 
     /**
@@ -50,7 +63,16 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+          // Busca la categoría por su ID
+         $categoria = Categoria::find($id);
+
+          // Actualiza el nombre de la categoría
+         $categoria->update([
+             'nombre' => $request->nombre
+    ]);
+
+          // Devuelve la categoría actualizada en formato JSON
+          return response()->json($categoria);
     }
 
     /**
@@ -58,6 +80,16 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+            // Busca la categoría por su ID
+             $categoria = Categoria::find($id);
+
+            // Elimina la categoría de la base de datos
+             $categoria->delete();
+
+            // Devuelve un mensaje confirmando que fue eliminada
+            return response()->json([
+                 'mensaje' => 'Categoría eliminada correctamente'
+    ]);
+
     }
 }

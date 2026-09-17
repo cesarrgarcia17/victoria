@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Material extends Model
 {
-    //nombre de la tabla
+    // Nombre de la tabla
     protected $table = "materiales";
 
+    // Campos que se pueden guardar o modificar
     protected $fillable = [
         'nombre',
         'imagen',
@@ -22,11 +24,12 @@ class Material extends Model
         'descripcion'
     ];
 
+    // La tabla no utiliza created_at ni updated_at
     public $timestamps = false;
 
-
-    public function categoria(): HasOne
+    // Relación con la tabla categorías
+    public function categoria(): BelongsTo
     {
-        return $this->hasOne(Categoria::class,'categoria');
+        return $this->belongsTo(Categoria::class, 'categoria');
     }
 }
