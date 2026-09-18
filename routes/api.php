@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\SolicitanteController;
 
 
 
@@ -26,3 +28,9 @@ Route::apiResource('pedidos', PedidoController::class);
 
 //rutas para inventario
 Route::apiResource('inventario', InventarioController::class);
+
+//rutas para usuarios
+Route::apiResource('usuarios', UsuarioController::class);
+
+// Rutas para Solicitantes
+Route::apiResource('solicitantes', SolicitanteController::class);
